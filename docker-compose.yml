@@ -1,54 +1,72 @@
 version: '3'
-
 services:
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx:/usr/share/nginx/html:ro
-      - ./nginx/etc/default.conf:/etc/nginx/conf.d/default.conf:ro
-    ports:
-      - 80:80
-  radarr:
-    image: linuxserver/radarr:latest
-    container_name: radarr
-    restart: always
-    ports:
-      - 7878:7878
-    volumes:
-      - ./radarr/config/:/config
-      - ${MOVIE_DIR}:/movies
-      - ${STORAGE_DIR}/radarr:/downloads/radarr
-    env_file:
-      - .env
+        
+        jackett:
+                container_name: jackett
+                image: linuxserver/jackett:latest
+                restart: unless-stopped
+                network_mode: host
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Europe/Paris # timezone
+                volumes:
+                        - /etc/localtime:/etc/localtime:ro
+                        - /opt/jackett/downloads:/downloads
+                        - /opt/jackett/config:/config
+  
+        sonarr:
+                container_name: sonarr
+                image: linuxserver/sonarr:latest
+                restart: unless-stopped
+                network_mode: host
+                environment:
+                        - PUID=1000 # default user id, for downloaded files access rights
+                        - PGID=1000 # default group id, for downloaded files access rights
+                        - TZ=Europe/Paris # timezone
+                volumes:
+                        - /etc/localtime:/etc/localtime:ro
+                        - /opt/sonarr/config:/config # config files
+                        - /mnt/:/tv # tv shows folder
+                        - /opt/sonarr/downloads:/downloads # download folder
+  
+        radarr:
+                container_name: radarr
+                image: linuxserver/radarr:latest
+                restart: unless-stopped
+                network_mode: host
+                environment:
+                        - PUID=1000 # default user id, for downloaded files access rights
+                        - PGID=1000 # default group id, for downloaded files access rights
+                        - TZ=Europe/Paris # timezone
+                volumes:
+                        - /etc/localtime:/etc/localtime:ro
+                        - /opt/radarr/config:/config # config files
+                        - /mnt/:/movies # movies folder
+                        - /opt/radarr/downloads:/downloads # download folders
 
-  sonarr:
-    image: linuxserver/sonarr:latest
-    container_name: sonarr
-    restart: always
-    ports:
-      - 8989:8989
-    volumes:
-      - ./sonarr/config/:/config
-      - ${TV_SHOW_DIR}:/tv
-      - ${STORAGE_DIR}/sonarr:/downloads/sonarr
-    env_file:
-      - .env
-  jackett:
-    image: linuxserver/jackett:latest
-    container_name: jackett
-    ports:
-      - 9117:9117
-    volumes:
-      - ./jackett/config/:/config
-    env_file:
-      - .env
-
-  sync:
-    image: nimmis/resilio-sync:latest
-    container_name: sync
-    volumes:
-      - ${STORAGE_DIR}:/data
-    ports:
-      - 33333:33333
-    env_file:
-      - .env
+        ombi:
+                build: /opt/docker-ombi-armhf/
+                ports:
+                        - 3579:3579
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Europe/Paris
+                volumes:
+                        - /opt/ombi/config:/config
+                        
+        resilio:
+                image: linuxserver/resilio-sync:latest
+                ports:
+                        - "8888:8888"
+                        - 55555:55555
+                volumes:
+                        - /opt/resilio/config:/config
+                        - /mnt/:/sync
+                        - /mnt/downloads:/downloads
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Europe/Paris
+                restart: unless-stopped
