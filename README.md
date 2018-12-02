@@ -4,6 +4,8 @@ This docker set up allows you to set up a local dockerized Sonarr, Radarr, Jacke
 
 ### Caveat:
 
+This setup requires you to occasionally clear the CompletedDownloads directory manually, and also do the same with the torrents in your seedbox.
+
 **Warning:** This whole README uses $SEEDHOST in place of your seedbox link (e.g. psv23232.seedbox.io). Anywhere you see that, change it to your seedbox.io hostname.
 
 
