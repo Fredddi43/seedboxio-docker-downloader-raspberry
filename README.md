@@ -9,7 +9,11 @@ This docker set up allows you to set up a local dockerized Sonarr, Radarr, Jacke
 
 # Installation
 
-Set your seedbox.io name as an environment variable.
+* Setup Docker on the pi(https://blog.hypriot.com/getting-started-with-docker-and-linux-on-the-raspberry-pi/)
+
+* Setup Docker-Compose(https://www.berthon.eu/2017/getting-docker-compose-on-raspberry-pi-arm-the-easy-way/)
+
+* Set your seedbox.io name as an environment variable.
 
 ```
 export SEEDHOST=psv23232.seedbox.io
@@ -51,7 +55,7 @@ While you're in the .env file, add in correct data for MOVIE_DIR, TV_SHOW_DIR, a
 
 ```
    host                               remote path                                        local path
-psv23232.seedbox.io       /home/psv23232/files/CompletedDownloads/radarr/              /downloads/radarr/
+psv23232.seedbox.io       /home/psv23232/files/                                       /downloads/radarr/
 
 ```
 
@@ -63,7 +67,7 @@ psv23232.seedbox.io       /home/psv23232/files/CompletedDownloads/radarr/       
 
 ```
    host                               remote path                                        local path
-psv23232.seedbox.io       /home/psv23232/files/CompletedDownloads/sonarr/              /downloads/sonarr/
+psv23232.seedbox.io       /home/psv23232/files/                                       /downloads/sonarr/
 
 ```
 
