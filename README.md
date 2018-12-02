@@ -31,7 +31,7 @@ Now go add the `CompletedDownloads` directory.
 
 * Visit $SEEDHOST/resilio and add that directory in Resilio Sync, copy the read-write secret.
 
-* Visit 0.0.0.0:8888 and setup a local folder for CompletedDownloads by clickong the "+", then "enter a link".
+* Visit 0.0.0.0:8888 (or your PI's IP if you're remote) and setup a local folder for CompletedDownloads by clicking the "+", then "enter a link".
 
 ## Configure Radarr:
 
