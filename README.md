@@ -13,7 +13,13 @@ This docker set up allows you to set up a local dockerized Sonarr, Radarr, Jacke
 
 * [Setup Docker-Compose](https://www.berthon.eu/2017/getting-docker-compose-on-raspberry-pi-arm-the-easy-way/)
 
-* Visit $SEEDHOST/dav  and create a directory called `CompletedDownloads`
+* Download [docker-compose.yml](https://raw.githubusercontent.com/Fredddi43/seedboxio-docker-downloader-raspberry/master/docker-compose.yml) from this repo to a folder where you can execute it (e.g. /opt/, if you're root)
+
+* Checkout [Ombi](https://github.com/linuxserver/docker-ombi-armhf) to the root of the same folder
+
+* Execute "docker-compose up -d" and let it build Ombi and pull the images for the others
+
+* While you wait, visit $SEEDHOST/dav  and create a directory called `CompletedDownloads`
 
 * Open $SEEDHOST  and click on the settings icon. Go to "Autotools". Make sure AutoMove is checked, if torrent's label matches filter /.*/ with the directory, /home/psv23232/files/CompletedDownloads. Also check the "Add torrent's label to path"
 ![rTorrent Settings](https://github.com/hjhart/docker-downloader/blob/master/assets/rtorrent_settings.png)
@@ -23,11 +29,6 @@ Now go add the `CompletedDownloads` directory.
 * Visit $SEEDHOST/resilio and add that directory in Resilio Sync, copy the read-write secret.
 
 * Visit 0.0.0.0:8888 and setup a local folder for CompletedDownloads by clickong the "+", then "enter a link".
-
-*
-
-
-While you're in the .env file, add in correct data for MOVIE_DIR, TV_SHOW_DIR, and STORAGE_DIR. These represent where you want you movies, your tv shows, and where your completed downloads should go.
 
 ## Configure Radarr:
 
