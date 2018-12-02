@@ -3,13 +3,13 @@ services:
         
         jackett:
                 container_name: jackett
-                image: linuxserver/jackett:latest
+                image: lsioarmhf/jackett:latest
                 restart: unless-stopped
                 network_mode: host
                 environment:
                         - PUID=1000
                         - PGID=1000
-                        - TZ=Europe/Paris # timezone
+                        - TZ=Europe/Paris
                 volumes:
                         - /etc/localtime:/etc/localtime:ro
                         - /opt/jackett/downloads:/downloads
@@ -17,33 +17,33 @@ services:
   
         sonarr:
                 container_name: sonarr
-                image: linuxserver/sonarr:latest
+                image: lsioarmhf/sonarr:latest
                 restart: unless-stopped
                 network_mode: host
                 environment:
-                        - PUID=1000 # default user id, for downloaded files access rights
-                        - PGID=1000 # default group id, for downloaded files access rights
-                        - TZ=Europe/Paris # timezone
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Europe/Paris
                 volumes:
                         - /etc/localtime:/etc/localtime:ro
-                        - /opt/sonarr/config:/config # config files
+                        - /opt/sonarr/config:/config
                         - /mnt/:/tv # tv shows folder
-                        - /opt/sonarr/downloads:/downloads # download folder
+                        - /opt/sonarr/downloads:/downloads
   
         radarr:
                 container_name: radarr
-                image: linuxserver/radarr:latest
+                image: lsioarmhf/radarr:latest
                 restart: unless-stopped
                 network_mode: host
                 environment:
-                        - PUID=1000 # default user id, for downloaded files access rights
-                        - PGID=1000 # default group id, for downloaded files access rights
-                        - TZ=Europe/Paris # timezone
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Europe/Paris
                 volumes:
                         - /etc/localtime:/etc/localtime:ro
-                        - /opt/radarr/config:/config # config files
+                        - /opt/radarr/config:/config
                         - /mnt/:/movies # movies folder
-                        - /opt/radarr/downloads:/downloads # download folders
+                        - /opt/radarr/downloads:/downloads
 
         ombi:
                 build: /opt/docker-ombi-armhf/
@@ -57,14 +57,14 @@ services:
                         - /opt/ombi/config:/config
                         
         resilio:
-                image: linuxserver/resilio-sync:latest
+                image: lsioarmhf/resilio-sync:latest
                 ports:
                         - "8888:8888"
                         - 55555:55555
                 volumes:
                         - /opt/resilio/config:/config
                         - /mnt/:/sync
-                        - /mnt/downloads:/downloads
+                        - /mnt/downloads:/downloads # downloads folder
                 environment:
                         - PUID=1000
                         - PGID=1000
