@@ -21,9 +21,9 @@ This docker set up allows you to set up a local dockerized Sonarr, Radarr, Jacke
 
 * While you wait, visit $SEEDHOST/dav  and create a directory called `CompletedDownloads`
 
-* Open $SEEDHOST  and click on the settings icon. Go to "Autotools". Make sure AutoMove is checked, if torrent's label matches filter /.*/ with the directory, /home/psv23232/files/CompletedDownloads. Also check the "Add torrent's label to path"
+* Open $SEEDHOST  and click on the settings icon. Go to "Autotools". Make sure AutoMove is checked, if torrent's label matches filter /.*/ with the directory, /home/psv23232/files/CompletedDownloads. Also check the "Add torrent's label to path". I recommend you change the operation type to copy, so you can keep seeding after the download finishes. Requires manually deleting the files later though.
 
-![rTorrent Settings](https://github.com/hjhart/docker-downloader/blob/master/assets/rtorrent_settings.png)
+![rTorrent Settings](https://github.com/Fredddi43/seedboxio-docker-downloader-raspberry/blob/master/assets/rtorrent_settings.png)
 
 Now go add the `CompletedDownloads` directory.
 
