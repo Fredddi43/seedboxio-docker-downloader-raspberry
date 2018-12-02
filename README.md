@@ -9,9 +9,9 @@ This docker set up allows you to set up a local dockerized Sonarr, Radarr, Jacke
 
 # Installation
 
-* Setup Docker on the pi(https://blog.hypriot.com/getting-started-with-docker-and-linux-on-the-raspberry-pi/)
+* [Setup Docker on the pi](https://blog.hypriot.com/getting-started-with-docker-and-linux-on-the-raspberry-pi/)
 
-* Setup Docker-Compose(https://www.berthon.eu/2017/getting-docker-compose-on-raspberry-pi-arm-the-easy-way/)
+* [Setup Docker-Compose](https://www.berthon.eu/2017/getting-docker-compose-on-raspberry-pi-arm-the-easy-way/)
 
 * Set your seedbox.io name as an environment variable.
 
